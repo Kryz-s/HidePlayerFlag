@@ -1,6 +1,6 @@
 name: HidePlayerFlag
 author: Kryz
-description: Provides a flag to hide the players enter on a region.
+description: Provides a flag to hide the players on a region.
 main: net.kryz.hideflag.Main
 version: ${version}
 api-version: 1.16
