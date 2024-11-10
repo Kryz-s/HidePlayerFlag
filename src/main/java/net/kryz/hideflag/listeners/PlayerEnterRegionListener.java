@@ -1,6 +1,13 @@
 package net.kryz.hideflag.listeners;
 
+import com.sk89q.minecraft.util.commands.CommandException;
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldedit.bukkit.BukkitPlayer;
+import com.sk89q.worldguard.LocalPlayer;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.flags.StateFlag;
+import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import net.kryz.hideflag.Main;
 import net.kryz.hideflag.events.PlayerEnterInRegionEvent;
@@ -18,13 +25,16 @@ public class PlayerEnterRegionListener implements Listener {
     @EventHandler
     public void onEnterRegion(PlayerEnterInRegionEvent event){
         Player player = event.getPlayer();
-        ProtectedRegion region = event.getRegion();
+        //ProtectedRegion region = event.getRegion();
         StateFlag flag = this.main.getHidePlayer();
+
         assert player != null;
 
-        if(!region.getFlags().containsKey(flag) && region.getFlag(flag) != StateFlag.State.ALLOW) return;
         for(Player hidePlayer : Bukkit.getServer().getOnlinePlayers()) {
-            player.hidePlayer(main, hidePlayer);
+            for(ProtectedRegion region1 : this.main.getRegions(hidePlayer.getUniqueId())){
+                if(!region1.getFlags().containsKey(flag) && region1.getFlag(flag) != StateFlag.State.ALLOW) return;
+                player.hidePlayer(this.main, hidePlayer);
+            }
         }
     }
 }
