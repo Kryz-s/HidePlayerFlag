@@ -20,11 +20,11 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        Set<ProtectedRegion> regions = this.main.getRegions(player.getUniqueId());
-        for(ProtectedRegion region : regions){
-            if(!region.getFlags().containsKey(this.main.getHidePlayer()) && region.getFlag(this.main.getHidePlayer()) != StateFlag.State.ALLOW) return;
-            for(Player hidePlayer : Bukkit.getServer().getOnlinePlayers()){
+        for(Player hidePlayer : Bukkit.getServer().getOnlinePlayers()){
+            for (ProtectedRegion region : this.main.getRegions(hidePlayer.getUniqueId())) {
+                if (!region.getFlags().containsKey(this.main.getHidePlayer()) && region.getFlag(this.main.getHidePlayer()) != StateFlag.State.ALLOW) return;
                 player.hidePlayer(this.main, hidePlayer);
+                hidePlayer.hidePlayer(this.main, player);
             }
         }
     }

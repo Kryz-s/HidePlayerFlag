@@ -26,7 +26,8 @@ public class PlayerLeftRegionListener implements Listener {
         for(Player showPlayer : Bukkit.getServer().getOnlinePlayers()) {
             for(ProtectedRegion region1 : this.main.getRegions(showPlayer.getUniqueId())){
                 if(!region1.getFlags().containsKey(flag) && region1.getFlag(flag) != StateFlag.State.ALLOW) return;
-                player.hidePlayer(this.main, showPlayer);
+                player.showPlayer(this.main, showPlayer);
+                showPlayer.showPlayer(this.main, player);
             }
         }
     }

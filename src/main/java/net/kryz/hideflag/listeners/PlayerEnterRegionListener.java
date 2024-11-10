@@ -34,6 +34,7 @@ public class PlayerEnterRegionListener implements Listener {
             for(ProtectedRegion region1 : this.main.getRegions(hidePlayer.getUniqueId())){
                 if(!region1.getFlags().containsKey(flag) && region1.getFlag(flag) != StateFlag.State.ALLOW) return;
                 player.hidePlayer(this.main, hidePlayer);
+                hidePlayer.hidePlayer(this.main, player);
             }
         }
     }
