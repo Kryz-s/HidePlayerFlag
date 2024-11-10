@@ -9,8 +9,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import java.util.Set;
-
 public class PlayerJoinListener implements Listener {
     private final Main main;
     public PlayerJoinListener(final Main main){
@@ -20,11 +18,11 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event){
         Player player = event.getPlayer();
-        for(Player hidePlayer : Bukkit.getServer().getOnlinePlayers()){
-            for (ProtectedRegion region : this.main.getRegions(hidePlayer.getUniqueId())) {
-                if (!region.getFlags().containsKey(this.main.getHidePlayer()) && region.getFlag(this.main.getHidePlayer()) != StateFlag.State.ALLOW) return;
+        StateFlag flag = this.main.getHidePlayer();
+        for(final Player hidePlayer : Bukkit.getServer().getOnlinePlayers()){
+            for (final ProtectedRegion region : this.main.getRegions(hidePlayer.getUniqueId())){
+                if (!region.getFlags().containsKey(flag) && region.getFlag(flag) != StateFlag.State.ALLOW) return;
                 player.hidePlayer(this.main, hidePlayer);
-                hidePlayer.hidePlayer(this.main, player);
             }
         }
     }

@@ -11,6 +11,7 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 import net.kryz.hideflag.listeners.PlayerEnterRegionListener;
+import net.kryz.hideflag.listeners.PlayerJoinListener;
 import net.kryz.hideflag.listeners.PlayerLeftRegionListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -60,13 +61,13 @@ public class Main extends JavaPlugin {
         PluginManager pm = Bukkit.getPluginManager();
         pm.registerEvents(new PlayerEnterRegionListener(this), this);
         pm.registerEvents(new PlayerLeftRegionListener(this), this);
+        pm.registerEvents(new PlayerJoinListener(this), this);
     }
 
     public StateFlag getHidePlayer(){
         return HIDE_PLAYER;
     }
-    public Set<ProtectedRegion> getRegions(UUID playerUUID)
-    {
+    public Set<ProtectedRegion> getRegions(UUID playerUUID) {
         Player player = Bukkit.getServer().getPlayer(playerUUID);
         if (player == null || !player.isOnline())
             return Collections.emptySet();
