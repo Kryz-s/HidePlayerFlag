@@ -25,7 +25,7 @@ public class PlayerEnterRegionListener implements Listener {
         assert player != null;
 
         for (Player hidePlayer : Bukkit.getServer().getOnlinePlayers()) {
-            if (!region.getFlags().containsKey(flag) && region.getFlag(flag) != StateFlag.State.ALLOW) return;
+            if (!region.getFlags().containsKey(flag) || region.getFlag(flag) != StateFlag.State.ALLOW && !player.isOnline()) return;
             hidePlayer.hidePlayer(main, player);
         }
     }

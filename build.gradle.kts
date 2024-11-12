@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "net.kryz.hideflag"
-version = "v1.0"
+version = "v1.1"
 
 repositories {
     mavenCentral()

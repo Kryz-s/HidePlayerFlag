@@ -14,6 +14,7 @@ import net.kryz.hideflag.listeners.PlayerEnterRegionListener;
 import net.kryz.hideflag.listeners.PlayerJoinListener;
 import net.kryz.hideflag.listeners.PlayerLeftRegionListener;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -74,6 +75,11 @@ public class Main extends JavaPlugin {
 
         RegionQuery query = container.createQuery();
         ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(player.getLocation()));
+        return set.getRegions();
+    }
+    public Set<ProtectedRegion> getRegionsAtLocation(final Location loc) {
+        final RegionQuery query = container.createQuery();
+        final ApplicableRegionSet set = query.getApplicableRegions(BukkitAdapter.adapt(loc));
         return set.getRegions();
     }
 }
