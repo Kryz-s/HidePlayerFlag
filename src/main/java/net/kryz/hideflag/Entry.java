@@ -17,12 +17,12 @@ import java.util.Set;
 
 public class Entry extends Handler implements Listener {
 
-    public final PluginManager pm = Bukkit.getPluginManager();
+    private static final PluginManager pm = Bukkit.getPluginManager();
     public static final Factory factory = new Factory();
 
     public static class Factory extends Handler.Factory<Entry> {
         @Override
-        public Entry create(Session session) {
+        public Entry create(final Session session) {
             return new Entry(session);
         }
     }

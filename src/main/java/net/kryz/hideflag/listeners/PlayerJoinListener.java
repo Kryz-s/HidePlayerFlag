@@ -3,7 +3,6 @@ package net.kryz.hideflag.listeners;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import net.kryz.hideflag.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,14 +15,12 @@ public class PlayerJoinListener implements Listener {
     }
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent event){
-        Player player = event.getPlayer();
-        StateFlag flag = this.main.getHidePlayer();
-        for(final Player hidePlayer : Bukkit.getServer().getOnlinePlayers()){
-            for (final ProtectedRegion region : this.main.getRegions(hidePlayer.getUniqueId())){
-                if (!region.getFlags().containsKey(flag) && region.getFlag(flag) != StateFlag.State.ALLOW) return;
-                player.hidePlayer(this.main, hidePlayer);
-            }
+    public void onJoin(final PlayerJoinEvent event){
+        final Player player = event.getPlayer();
+        final StateFlag flag = this.main.getHidePlayer();
+        for (final ProtectedRegion region : this.main.getRegions(player.getUniqueId())){
+            if(region.getFlag(flag) != StateFlag.State.ALLOW || region.getFlags().containsKey(flag)) return;
+            player.setInvisible(false);
         }
     }
 }

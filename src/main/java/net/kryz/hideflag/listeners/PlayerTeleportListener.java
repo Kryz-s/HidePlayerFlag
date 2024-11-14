@@ -25,7 +25,7 @@ public class PlayerTeleportListener implements Listener {
         for(final Player p : Bukkit.getServer().getOnlinePlayers()){
             for(final ProtectedRegion region : regions){
                 if(region.getFlags().containsKey(main.getHidePlayer()) || region.getFlag(main.getHidePlayer()) == StateFlag.State.ALLOW){
-                    p.hidePlayer(main, player);
+                    p.hideEntity(main, player);
                 }
             }
         }

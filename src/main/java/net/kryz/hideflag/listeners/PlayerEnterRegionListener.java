@@ -4,7 +4,6 @@ import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import net.kryz.hideflag.Main;
 import net.kryz.hideflag.events.PlayerEnterInRegionEvent;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,9 +23,9 @@ public class PlayerEnterRegionListener implements Listener {
 
         assert player != null;
 
-        for (Player hidePlayer : Bukkit.getServer().getOnlinePlayers()) {
-            if (!region.getFlags().containsKey(flag) || region.getFlag(flag) != StateFlag.State.ALLOW && !player.isOnline()) return;
-            hidePlayer.hidePlayer(main, player);
-        }
+        //for (Player hidePlayer : Bukkit.getServer().getOnlinePlayers()) {
+        if (!region.getFlags().containsKey(flag) || region.getFlag(flag) != StateFlag.State.ALLOW && !player.isOnline()) return;
+        player.setInvisible(true);
+        //}
     }
 }

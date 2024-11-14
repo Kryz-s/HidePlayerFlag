@@ -63,6 +63,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new PlayerEnterRegionListener(this), this);
         pm.registerEvents(new PlayerLeftRegionListener(this), this);
         pm.registerEvents(new PlayerJoinListener(this), this);
+        //pm.registerEvents(new PlayerTeleportListener(this), this);
     }
 
     public StateFlag getHidePlayer(){
