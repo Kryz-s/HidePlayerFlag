@@ -34,7 +34,7 @@ tasks {
 }
 
 application {
-    mainClass.set("net.kryz.hideflag.Main")
+    mainClass.set("net.kryz.hideflag.HidePlayerPlugin")
 }
 
 tasks{
