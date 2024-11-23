@@ -3,6 +3,7 @@ package net.kryz.hideflag.listeners;
 import com.sk89q.worldguard.protection.flags.StateFlag;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 import net.kryz.hideflag.Main;
+import net.kryz.hideflag.NMS;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
