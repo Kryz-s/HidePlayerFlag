@@ -1,7 +1,7 @@
 name: HidePlayerFlag
 author: Kryz
 description: Provides a flag to hide the players on a region.
-main: net.kryz.hideflag.Main
+main: net.kryz.hideflag.HidePlayerPlugin
 version: ${version}
 api-version: 1.16
 depend: [WorldGuard]
